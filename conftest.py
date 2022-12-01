@@ -1,12 +1,9 @@
 import pytest
-import random
+from selene.support.shared import browser
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture()
 def open_browser():
-    b = "browser"
-    print("Браузер открыт!")
-    print(f"Случайное число: {random.randint(0, 100)}")
-    yield "b" #передача управления из этой функции
-    b = ""
-    print("Браузер закрыт!")
+    browser.config.hold_browser_open = True
+    browser.open('https://duckduckgo.com')
+
